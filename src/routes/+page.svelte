@@ -11,6 +11,7 @@ let y: number;
 	<title>I'm Henrry Bourgeot</title>
 </svelte:head>
 <svelte:window bind:innerWidth={x} bind:innerHeight={y}/>
+	<svelte:body class="transition-all duration-500"/>
 <div>
 	<Header/>
 	<main class={`${x < 768 ? "flex-col" : ""} flex justify-center max-w-screen-xl mx-auto items-center`} style={`--height: ${x<768 ? y-50 : y-120}px`}>
@@ -27,14 +28,25 @@ let y: number;
 		{/if}
 	</main>
 
-	<section id="about">
+	<section id="about" class="sm:container mx-auto">
+		<div>
 		<h2 class="text-xl font-bold">About me</h2>
+
+		</div>
+		<img src="" alt="">
 	</section>
 </div>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
-	* {
+	:global(body) {
 		font-family: 'Raleway', sans-serif;
+		transition: background-color 500ms, color 500ms;
+
+	}
+
+	:global(body.dark-mode){
+		background-color: #222;
+		color: #eee;
 	}
 
 	main.justify-center{
