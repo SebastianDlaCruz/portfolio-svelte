@@ -34,7 +34,7 @@
 				I have professional experience working with Svelte, Python, Go, and other languages and
 				frameworks that you will find in the <a href="#skills">skills section</a> of this page.
 			</p>
-			<a href="#projects" class="border-4 border-blue-600 mx-auto ml-0 py-3 px-7">See projects</a>
+			<a href="#projects" class="border-4 border-[#576CBC] mx-auto ml-0 py-3 px-7">See projects</a>
 		</section>
 		{#if x > 768}
 			<img src={gopherXl} class="w-150" alt="Gopher" />
@@ -42,10 +42,10 @@
 			<img src={gopherLg} class="w-150" alt="Gopher" />
 		{/if}
 	</main>
-	<section id="about" class="py-5 px-5 mx-auto flex justify-center items-center transition-bg duration-500 { !dark ? 'bg-blue-200' : 'bg-blue-900'} {x < 1100 ? 'h-full w-full px-0': 'h-screen'}">
-		<div class="flex items-center space-between w-full {x < 1024 ? 'flex-col-reverse items-center' : ''}">
-		<article class="w-1/2 p-2 bg-blue-500  {x<1024 ? 'w-1/2 self-center' : 'w-13/12'}">
-			<img src={about} alt="Pic with IA" class="w-full border-blue-500 border-10 rounded-md" />
+	<section id="about" class="py-5 px-5 mx-auto flex justify-center items-center transition-bg duration-500 { !dark ? 'bg-[#A5D7E8]' : 'bg-[#19376D]'} {x < 1100 ? 'h-full w-full px-0': 'h-screen'}">
+		<div class="flex items-center md:container space-between w-full {x < 1024 ? 'flex-col-reverse items-center' : ''}">
+		<article class="{x<1024 ? 'self-center' : ''} w-full">
+			<img src={about} alt="Pic with IA" class="shadow-xl mb-7 w-full rounded-md w-3/2 mx-auto" />
 			<p class="text-lg text-center font-bold">Image generated with IA</p>
 		</article>
 		<article class="p-20 {x<1100 ? 'w-full p-5' : 'w-13/12'}">
@@ -85,5 +85,11 @@
 
 	main.justify-center {
 		height: var(--height);
+	}
+
+	.shadow-xl{
+		box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
+		-webkit-box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
+		-moz-box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
 	}
 </style>
