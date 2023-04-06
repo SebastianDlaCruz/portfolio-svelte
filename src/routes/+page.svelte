@@ -3,7 +3,7 @@
 	import Header from "$lib/components/Header.svelte";
 	import gopherXl from "$lib/assets/gopher-xl.png";
 	import gopherLg from "$lib/assets/gopher-lg.png";
-	import gopherAbout from "$lib/assets/about.png";
+	import about from "$lib/assets/about.jpeg";
 	let x: number;
 	let y: number;
 	let dark = false;
@@ -42,21 +42,27 @@
 			<img src={gopherLg} class="w-150" alt="Gopher" />
 		{/if}
 	</main>
-	<section id="about" class="mx-auto flex items-center space-between transition-bg duration-500 { !dark ? 'bg-blue-200' : 'bg-blue-900'} {x < 768 ? 'h-full': 'h-screen'}">
-		<img src={gopherAbout} alt="myGopher" class="w-1/2 {x < 768 ? 'hidden' : ''}"   />
-		<div class="p-10">
+	<section id="about" class="py-5 px-5 mx-auto flex justify-center items-center transition-bg duration-500 { !dark ? 'bg-blue-200' : 'bg-blue-900'} {x < 1100 ? 'h-full w-full px-0': 'h-screen'}">
+		<div class="flex items-center space-between w-full {x < 1024 ? 'flex-col-reverse items-center' : ''}">
+		<article class="w-1/2 p-2 bg-blue-500  {x<1024 ? 'w-1/2 self-center' : 'w-13/12'}">
+			<img src={about} alt="Pic with IA" class="w-full border-blue-500 border-10 rounded-md" />
+			<p class="text-lg text-center font-bold">Image generated with IA</p>
+		</article>
+		<article class="p-20 {x<1100 ? 'w-full p-5' : 'w-13/12'}">
 			<h2 class="text-5xl font-bold mb-10">About me</h2>
-			<p class="text-xl leading-relaxed w-9/12 mb-5">
-				I'm from Venezuela and I have 20 years old, actually I study the sixth semester of ten of the Systems Engineer major from the Polytechnic
+			<p class="text-xl leading-relaxed mb-5 w-11/12">
+				I'm from Venezuela and I have 20 years old, actually I study the third year of five
+				of the Systems Engineer major from the Polytechnic
 				University Institute <em>Santiago Mariño</em>. Also, I love teach others about
 				IT topics. My hobbie are the videogames and enjoy the life with my friends and family.
 			</p>
-			<p class="text-xl leading-relaxed w-9/12">
+			<p class="text-xl leading-relaxed w-11/12">
 				I've 1 year working as a FullStack Dev. in my actual work, I use technologies as Svelte, Python,
 				TypeScript and others. If you hire me, you'll get clean code and the best practices for make a clean and
 				readable code. However, something that I like of programming, is resolve problems that are really
 				annoying.
 			</p>
+		</article>
 		</div>
 	</section>
 </div>
