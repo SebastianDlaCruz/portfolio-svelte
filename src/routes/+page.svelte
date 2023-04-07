@@ -1,13 +1,36 @@
 <script lang="ts">
 	import 'virtual:windi.css';
+	import {
+		Bolt,
+		Hexagon,
+		HexagonLetterE,
+		Coffee,
+		Pepper,
+		BrandAmazon,
+		BrandHtml5,
+		BrandCss3,
+		BrandBootstrap,
+		BrandTailwind,
+		BrandCpp,
+		Sql,
+		BrandGit,
+		BrandJavascript,
+		BrandVue,
+		BrandSvelte,
+		BrandTypescript,
+		BrandSolidjs,
+		BrandGolang,
+		BrandPython,
+		BrandDocker
+	} from "@steeze-ui/tabler-icons"
+	import {Icon} from "@steeze-ui/svelte-icon";
 	import Header from "$lib/components/Header.svelte";
 	import gopherXl from "$lib/assets/gopher-xl.png";
 	import gopherLg from "$lib/assets/gopher-lg.png";
 	import gopherAbout from "$lib/assets/about.png";
 	let x: number;
 	let y: number;
-	let dark = false;
-
+	let dark = true;
 	const toggleDarkMode = () => {
 		window.document.body.classList.toggle('dark-mode');
 		dark = !dark;
@@ -59,10 +82,91 @@
 			</p>
 		</div>
 	</section>
+	<section id="skills" class="skills p-2 md:p-5">
+		<div class="overlay p-2 sm:p-10 caskaydia">
+			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
+			<ul class="icons grid">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>HTML
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandCss3} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>CSS
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandBootstrap} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Bootstrap
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandTailwind} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Tailwind
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandCpp} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>C++
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandGit} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Git
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandJavascript} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>JavaScript
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandTypescript} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>TypeScript
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandSolidjs} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>SolidJS
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandVue} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Vue
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandSvelte} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Svelte/SvelteKit
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Hexagon} style="stroke: #576CBC; fill: #576CBC" class="h-35 w-35" theme="rounded"/>NodeJS
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Golang
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={HexagonLetterE} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Golang Echo
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandPython} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Python
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Bolt} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>FastAPI
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Pepper} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Flask
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Coffee} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Java
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandDocker} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Docker
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandAmazon} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>
+					Amazon Web Services
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Sql} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>SQL
+				</li>
+			</ul>
+		</div>
+	</section>
 </div>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+
+	@font-face {
+		font-family: 'CaskaydiaCove';
+		src: url("src/lib/fonts/Caskaydia Cove Nerd Font Complete Mono Regular.otf");
+		font-weight: 700;
+	}
+
+	.caskaydia{
+		font-family: 'CaskaydiaCove', monospace;
+	}
 
 	:global(html) {
 		scroll-behavior: smooth;
@@ -79,5 +183,23 @@
 
 	main.justify-center {
 		height: var(--height);
+	}
+
+	.overlay{
+		background-color: #22222299;
+		height: 100%;
+		width: 100%;
+	}
+	.skills{
+		background-image: url("src/lib/assets/skills.png");
+		background-position: center center;
+		background-attachment: fixed;
+		position: relative;
+		color: #eeeeee;
+	}
+
+	.grid {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		row-gap: 10%;
 	}
 </style>
