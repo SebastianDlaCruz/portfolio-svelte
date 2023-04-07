@@ -88,8 +88,8 @@
 		</article>
 		</div>
 	</section>
-	<section id="skills" class="skills p-2 md:p-5">
-		<div class="overlay p-2 sm:p-10 caskaydia">
+	<section id="skills" class="skills p-2 md:p-5 h-full">
+		<div class="overlay p-2 sm:p-10 caskaydia h-full">
 			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
 			<ul class="icons grids">
 				<li class="flex flex-col justify-center items-center">
@@ -191,10 +191,11 @@
 		height: var(--height);
 	}
   
-	.shadow-xl{
-		box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
-		-webkit-box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
-		-moz-box-shadow: -8px 10px 23px 6px rgba(0,0,0,0.75);
+	.shadow-xl {
+		box-shadow: -8px 10px 23px 6px rgba(0, 0, 0, 0.75);
+		-webkit-box-shadow: -8px 10px 23px 6px rgba(0, 0, 0, 0.75);
+		-moz-box-shadow: -8px 10px 23px 6px rgba(0, 0, 0, 0.75);
+	}
 	.overlay{
 		background-color: #22222299;
 		height: 100%;
