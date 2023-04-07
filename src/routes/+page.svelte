@@ -45,10 +45,10 @@
 <div>
 	<Header {dark} func={toggleDarkMode} />
 	<main
-		class={`${x < 768 ? 'flex-col mb-10' : ''} flex justify-center max-w-screen-xl mx-auto items-center`}
-		style={`--height: ${(x < 768) ? y : y - 120}px`}
+		class={`${x < 1024 ? 'flex-col mb-10 h-full mx-5' : ''} flex justify-center max-w-screen-xl mx-auto items-center`}
+		style={`--height: ${(x < 1024) ? y : y - 120}px`}
 	>
-		<section class="{x<768 ? 'w-full' : 'w-1/2'} flex flex-col gap-3 p-6 justify-center">
+		<section class="{x<1024 ? 'w-full' : 'w-1/2'} flex flex-col gap-3 p-6 justify-center">
 			<h3 class="text-xl font-bold">Hi there! I'm</h3>
 			<h2 class="text-5xl mb-6">
 				Henrry Bourgeot, a Fullstack Developer based in Maracay, Venezuela
@@ -59,16 +59,16 @@
 			</p>
 			<a href="#projects" class="border-4 border-[#576CBC] mx-auto ml-0 py-3 px-7">See projects</a>
 		</section>
-		{#if x > 768}
-			<img src={gopherXl} class="w-150" alt="Gopher" />
+		{#if x > 1024}
+			<img src={gopherXl} class="w-1/2" alt="Gopher" />
 		{:else}
-			<img src={gopherLg} class="w-150" alt="Gopher" />
+			<img src={gopherLg} class="w-4/6" alt="Gopher" />
 		{/if}
 	</main>
-	<section id="about" class="py-5 px-5 mx-auto flex justify-center items-center transition-bg duration-500 { !dark ? 'bg-[#A5D7E8]' : 'bg-[#19376D]'} {x < 1100 ? 'h-full w-full px-0': 'h-screen'}">
+	<section id="about" class="p-7 mx-auto flex justify-center items-center transition-bg duration-500 { !dark ? 'bg-[#A5D7E8]' : 'bg-[#19376D]'} {x < 1100 ? 'h-full w-full px-0': 'h-screen'}">
 		<div class="flex items-center md:container space-between w-full {x < 1024 ? 'flex-col-reverse items-center' : ''}">
 		<article class="{x<1024 ? 'self-center' : ''} w-full">
-			<img src={about} alt="Pic with IA" class="shadow-xl mb-7 w-full rounded-md w-3/2 mx-auto" />
+			<img src={about} alt="Pic with IA" class="shadow-xl mb-7 rounded-md {x<1024 ? 'w-1/2' : 'w-3/2'} mx-auto" />
 			<p class="text-lg text-center font-bold">Image generated with IA</p>
 		</article>
 		<article class="p-20 {x<1100 ? 'w-full p-5' : 'w-13/12'}">
@@ -88,73 +88,73 @@
 		</article>
 		</div>
 	</section>
-	<section id="skills" class="skills p-2 md:p-5 h-full">
-		<div class="overlay p-2 sm:p-10 caskaydia h-full">
+	<section id="skills" class="skills">
+		<div class="overlay caskaydia p-2 md:p-5">
 			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
 			<ul class="icons grids">
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>HTML
+					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>HTML
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandCss3} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>CSS
+					<Icon src={BrandCss3} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>CSS
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandBootstrap} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Bootstrap
+					<Icon src={BrandBootstrap} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Bootstrap
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandTailwind} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Tailwind
+					<Icon src={BrandTailwind} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Tailwind
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandCpp} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>C++
+					<Icon src={BrandCpp} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>C++
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandGit} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Git
+					<Icon src={BrandGit} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Git
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandJavascript} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>JavaScript
+					<Icon src={BrandJavascript} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>JavaScript
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandTypescript} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>TypeScript
+					<Icon src={BrandTypescript} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>TypeScript
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandSolidjs} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>SolidJS
+					<Icon src={BrandSolidjs} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>SolidJS
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandVue} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Vue
+					<Icon src={BrandVue} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Vue
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandSvelte} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Svelte/SvelteKit
+					<Icon src={BrandSvelte} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Svelte/SvelteKit
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={Hexagon} style="stroke: #576CBC; fill: #576CBC" class="h-35 w-35" theme="rounded"/>NodeJS
+					<Icon src={Hexagon} style="stroke: #576CBC; fill: #576CBC" class="h-30 w-30" theme="rounded"/>NodeJS
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Golang
+					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Golang
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={HexagonLetterE} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Golang Echo
+					<Icon src={HexagonLetterE} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Golang Echo
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandPython} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Python
+					<Icon src={BrandPython} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Python
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={Bolt} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>FastAPI
+					<Icon src={Bolt} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>FastAPI
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={Pepper} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Flask
+					<Icon src={Pepper} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Flask
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={Coffee} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Java
+					<Icon src={Coffee} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Java
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandDocker} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>Docker
+					<Icon src={BrandDocker} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Docker
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandAmazon} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>
+					<Icon src={BrandAmazon} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>
 					Amazon Web Services
 				</li>
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={Sql} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>SQL
+					<Icon src={Sql} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>SQL
 				</li>
 			</ul>
 		</div>
@@ -205,13 +205,13 @@
 		background-image: url("../lib/assets/skills.png");
 		background-position: center center;
 		background-attachment: fixed;
-		position: relative;
 		color: #eeeeee;
+		height: max-content;
 	}
 
 	.grids {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-		row-gap: 10%;
+		row-gap: 10px;
 	}
 </style>
