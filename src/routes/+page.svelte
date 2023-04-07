@@ -30,7 +30,7 @@
 	import about from "$lib/assets/about.jpeg";
 	let x: number;
 	let y: number;
-	let dark = true;
+	let dark = false;
 	const toggleDarkMode = () => {
 		window.document.body.classList.toggle('dark-mode');
 		dark = !dark;
@@ -91,7 +91,7 @@
 	<section id="skills" class="skills p-2 md:p-5">
 		<div class="overlay p-2 sm:p-10 caskaydia">
 			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
-			<ul class="icons grid">
+			<ul class="icons grids">
 				<li class="flex flex-col justify-center items-center">
 					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-35 w-35" theme="rounded"/>HTML
 				</li>
@@ -201,14 +201,15 @@
 		width: 100%;
 	}
 	.skills{
-		background-image: url("src/lib/assets/skills.png");
+		background-image: url("../lib/assets/skills.png");
 		background-position: center center;
 		background-attachment: fixed;
 		position: relative;
 		color: #eeeeee;
 	}
 
-	.grid {
+	.grids {
+		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		row-gap: 10%;
 	}

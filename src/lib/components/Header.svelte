@@ -1,5 +1,6 @@
 <script lang="ts">
-	import {Icon, Moon, Sun} from "svelte-hero-icons"
+	import {Moon, Sun} from "@steeze-ui/tabler-icons"
+	import {Icon} from "@steeze-ui/svelte-icon"
 	export let dark: boolean;
 	export let func: any;
 </script>
