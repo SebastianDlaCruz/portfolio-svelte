@@ -6,6 +6,7 @@
 		HexagonLetterE,
 		Coffee,
 		Pepper,
+		Wind,
 		BrandAmazon,
 		BrandHtml5,
 		BrandCss3,
@@ -28,9 +29,49 @@
 	import gopherXl from "$lib/assets/gopher-xl.png";
 	import gopherLg from "$lib/assets/gopher-lg.png";
 	import about from "$lib/assets/about.jpeg";
+	import {createSearchStore} from "/src/store/search.ts";
+	import {searchHandler} from "../store/search";
+	import {onDestroy} from "svelte";
+
 	let x: number;
 	let y: number;
 	let dark = false;
+
+	const skills = [
+		{component: BrandHtml5, name: 'HTML', category: 'frontend', framework: false},
+		{component: BrandCss3, name: 'CSS', category: 'frontend', framework: false},
+		{component: BrandTailwind, name: 'Tailwind', category: 'frontend', framework: true, keywords: 'css'},
+		{component: BrandBootstrap, name: 'Bootstrap', category: 'frontend', framework: true, keywords: 'css'},
+		{component: Wind, name: 'Windi', category: 'frontend', framework: true, keywords: 'css'},
+		{component: BrandJavascript, name: 'JavaScript', category: 'frontend backend', framework: false, keywords: 'javascript js'},
+		{component: BrandTypescript, name: 'TypeScript', category: 'frontend backend', framework: false, keywords: 'typescript ts'},
+		{component: BrandSvelte, name: 'Svelte', category: 'frontend', framework: true, keywords: 'javascript typescript ts js'},
+		{component: BrandVue, name: 'Vue', category: 'frontend', framework:true, keywords: 'javascript typescript ts js'},
+		{component: BrandSolidjs, name: 'Solid', category: 'frontend', framework: true, keywords: 'javascript typescript ts js'},
+		{component: Hexagon, name: 'NodeJS', category: 'backend', framework: true, keywords: 'javascript typescript ts js'},
+		{component: BrandCpp, name: 'C++', category: 'multi platform', framework: false, keywords: 'cpp'},
+		{component: BrandGolang, name: 'Go', category: 'backend', framework: false, keywords: 'golang go gopher'},
+		{component: HexagonLetterE, name: 'Echo', category: 'backend', framework: false, keywords: 'golang go'},
+		{component: BrandPython, name: 'Python', category: 'backend multiplatform', framework: false, keywords: 'py python'},
+		{component: Pepper, name: 'Flask', category: 'backend', framework: true, keywords: 'py python'},
+		{component: Bolt, name: 'FastAPI', category: 'backend', framework: true, keywords: 'py python'},
+		{component: Coffee, name: 'Java', category: 'backend multiplatform', framework: false},
+		{component: BrandDocker, name: 'Docker',category: 'cloud', framework: false},
+		{component: BrandAmazon, name: 'AWS', category: 'cloud', framework: false, keywords: 'amazon web services'},
+		{component: Sql, name: 'SQL', category: 'database', framework: false, keywords: 'mysql postgres server mariadb'},
+		{component: BrandGit, name: 'git', category: 'control version', framework: false},
+	]
+
+	const skillsToSearch = skills.map(skill => ({
+		...skill,
+		searchTerms: `${skill.name} ${skill.category} ${skill.framework ? 'framework' : ''} ${skill.keywords}`
+	}))
+
+	const searchSkills = createSearchStore(skillsToSearch);
+
+	const unsubscribe = searchSkills.subscribe((model) => searchHandler(model));
+
+	onDestroy(()=> unsubscribe());
 	const toggleDarkMode = () => {
 		window.document.body.classList.toggle('dark-mode');
 		dark = !dark;
@@ -89,75 +130,20 @@
 		</div>
 	</section>
 	<section id="skills" class="skills">
-		<div class="overlay caskaydia p-2 md:p-5">
+		<div class="overlay caskaydia p-2 md:p-5 flex flex-col">
 			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
+			<input type="search" name="search-skill" id="search-skill" placeholder="Search skills..." bind:value={$searchSkills.search} class="input[type='search'] outline-0 rounded-md text-dark-900 mx-auto mb-5">
 			<ul class="icons grids">
+				{#each $searchSkills.filtered as skill}
 				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>HTML
+					<Icon src={skill.component} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>{skill.name}
 				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandCss3} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>CSS
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandBootstrap} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Bootstrap
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandTailwind} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Tailwind
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandCpp} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>C++
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandGit} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Git
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandJavascript} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>JavaScript
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandTypescript} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>TypeScript
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandSolidjs} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>SolidJS
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandVue} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Vue
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandSvelte} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Svelte/SvelteKit
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={Hexagon} style="stroke: #576CBC; fill: #576CBC" class="h-30 w-30" theme="rounded"/>NodeJS
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Golang
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={HexagonLetterE} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Golang Echo
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandPython} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Python
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={Bolt} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>FastAPI
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={Pepper} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Flask
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={Coffee} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Java
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandDocker} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>Docker
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={BrandAmazon} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>
-					Amazon Web Services
-				</li>
-				<li class="flex flex-col justify-center items-center">
-					<Icon src={Sql} style="stroke: #576CBC" class="h-30 w-30" theme="rounded"/>SQL
-				</li>
+				{/each}
 			</ul>
 		</div>
+	</section>
+	<section id="projects" class="p-5 transition-bg duration-500 { !dark ? 'bg-[#A5D7E8]' : 'bg-[#19376D]'}">
+		<h2 class="text-5xl font-bold text-center">Projects</h2>
 	</section>
 </div>
 

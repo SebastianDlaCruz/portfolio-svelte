@@ -4,8 +4,8 @@
 	export let dark: boolean;
 	export let func: any;
 </script>
-<header class="{!dark ? 'bg-light-900/5' : 'bg-dark-900/2'} 11/12 backdrop-filter backdrop-blur-lg sticky top-0 flex justify-between mx-auto p-10">
-	<h1 class="text-3xl">Henrry Bourgeot</h1>
+<header class="{!dark ? 'bg-light-900/25' : 'bg-dark-900/2'} 11/12 backdrop-filter backdrop-blur-lg sticky top-0 flex justify-between mx-auto p-10">
+	<h1 class="text-3xl font-bold { !dark ? 'text-[#576CBC]' : 'text-[#A5D7E8]'}"><a href="/">Henrry Bourgeot</a></h1>
 	<nav class="flex justify-around w-1/2 items-center">
 		<a href="#about">About Me</a>
 		<a href="#skills">Skills</a>
