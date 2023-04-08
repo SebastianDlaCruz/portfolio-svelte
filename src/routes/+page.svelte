@@ -194,7 +194,6 @@
 <div>
 	<Header {dark} func={toggleDarkMode} />
 
-	<p class="fixed top-50 z-5 text-gray-500">Scroll {scroll}</p>
 	<main
 		class={`${
 			x < 1024 ? 'flex-col mb-10 h-full mx-5' : ''
