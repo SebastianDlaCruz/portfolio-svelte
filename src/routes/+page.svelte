@@ -30,13 +30,12 @@
 	import gopherXl from '$lib/assets/gopher-xl.png';
 	import gopherLg from '$lib/assets/gopher-lg.png';
 	import about from '$lib/assets/about.jpeg';
-	import { createSearchStore } from '/src/store/search.ts';
-	import { searchHandler } from '../store/search';
+	import { createSearchStore, searchHandler } from '../store/search';
 	import { onDestroy } from 'svelte';
 
 	let x: number;
 	let y: number;
-	let dark = true;
+	let dark = false;
 
 	const skills = [
 		{ component: BrandHtml5, name: 'HTML', category: 'frontend', framework: false },
