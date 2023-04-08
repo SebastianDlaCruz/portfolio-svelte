@@ -23,7 +23,15 @@
 		BrandGolang,
 		BrandPython,
 		BrandDocker,
-		Database
+		Database,
+		BrandGmail,
+		BrandInstagram,
+		BrandTwitter,
+		BrandTiktok,
+		BrandLinkedin,
+		BrandGithub,
+		Layout,
+		Code
 	} from '@steeze-ui/tabler-icons';
 	import { Icon } from '@steeze-ui/svelte-icon';
 	import Header from '$lib/components/Header.svelte';
@@ -32,10 +40,10 @@
 	import about from '$lib/assets/about.jpeg';
 	import { createSearchStore, searchHandler } from '../store/search';
 	import { onDestroy } from 'svelte';
-	import Saos from 'saos';
 
 	let x: number;
 	let y: number;
+	let scroll: number;
 	let dark = false;
 
 	const skills = [
@@ -181,10 +189,12 @@
 <svelte:head>
 	<title>I'm Henrry Bourgeot</title>
 </svelte:head>
-<svelte:window bind:innerWidth={x} bind:innerHeight={y} />
+<svelte:window bind:scrollY={scroll} bind:innerWidth={x} bind:innerHeight={y} />
 <svelte:body />
 <div>
 	<Header {dark} func={toggleDarkMode} />
+
+	<p class="fixed top-50 z-5 text-gray-500">Scroll {scroll}</p>
 	<main
 		class={`${
 			x < 1024 ? 'flex-col mb-10 h-full mx-5' : ''
@@ -208,267 +218,278 @@
 			<img src={gopherLg} class="w-4/6" alt="Gopher" />
 		{/if}
 	</main>
-	<Saos
-		once={true}
-		animation={'fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both'}
-		top={250}
-		bottom={250}
+	<section
+		id="about"
+		class="p-7 mx-auto flex justify-center items-center transition-bg duration-500 {!dark
+			? 'bg-[#A5D7E8]'
+			: 'bg-[#19376D]'} {x < 1100 ? 'h-full w-full px-0' : 'h-screen'} {x > 1100 && scroll > 30
+			? 'fade-in'
+			: ''}"
 	>
-		<section
-			id="about"
-			class="p-7 mx-auto flex justify-center items-center transition-bg duration-500 {!dark
-				? 'bg-[#A5D7E8]'
-				: 'bg-[#19376D]'} {x < 1100 ? 'h-full w-full px-0' : 'h-screen'}"
+		<div
+			class="flex items-center md:container space-between w-full {x < 1024
+				? 'flex-col-reverse items-center'
+				: ''}"
 		>
-			<div
-				class="flex items-center md:container space-between w-full {x < 1024
-					? 'flex-col-reverse items-center'
-					: ''}"
-			>
-				<article class="{x < 1024 ? 'self-center' : ''} w-full" data-aos="fade-up">
-					<img
-						src={about}
-						alt="Pic with IA"
-						class="shadow-xl mb-7 rounded-md {x < 1024 ? 'w-1/2' : 'w-3/2'} mx-auto"
-					/>
-					<p class="text-lg text-center font-bold">Image generated with IA</p>
-				</article>
-				<article class="p-20 {x < 1100 ? 'w-full p-5' : 'w-13/12'}" data-aos="fade-up">
-					<h2 class="text-5xl font-bold mb-10">About me</h2>
-					<p class="text-xl leading-relaxed mb-5 w-11/12">
-						I'm from Venezuela and I have 20 years old, actually I study the third year of five of
-						the Systems Engineer major from the Polytechnic University Institute <em
-							>Santiago Mariño</em
-						>. Also, I love teach others about IT topics. My hobbie are the videogames and enjoy the
-						life with my friends and family.
-					</p>
-					<p class="text-xl leading-relaxed w-11/12">
-						I've 1 year working as a FullStack Dev. in my actual work, I use technologies as Svelte,
-						Python, TypeScript and others. If you hire me, you'll get clean code and the best
-						practices for make a clean and readable code. However, something that I like of
-						programming, is resolve problems that are really annoying.
-					</p>
-				</article>
-			</div>
-		</section>
-	</Saos>
-	<Saos
-		once={true}
-		animation={'fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both'}
-		top={250}
-		bottom={250}
-	>
-		<section id="skills" class="skills">
-			<div class="overlay caskaydia p-2 md:p-5 flex flex-col">
-				<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
-				<input
-					type="search"
-					name="search-skill"
-					id="search-skill"
-					placeholder="Search skills..."
-					bind:value={$searchSkills.search}
-					class="input[type='search'] outline-0 rounded-md text-dark-900 mx-auto mb-5"
+			<article class="{x < 1024 ? 'self-center' : ''} w-full" data-aos="fade-up">
+				<img
+					src={about}
+					alt="Pic with IA"
+					class="shadow-xl mb-7 rounded-md {x < 1024 ? 'w-1/2' : 'w-3/2'} mx-auto"
 				/>
-				<ul class="icons grids">
-					{#each $searchSkills.filtered as skill}
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={skill.component}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>{skill.name}
-						</li>
-					{/each}
-				</ul>
-			</div>
-		</section>
-	</Saos>
-	<Saos
-		once={true}
-		animation={'fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both'}
-		top={250}
-		bottom={250}
+				<p class="text-lg text-center font-bold">Image generated with IA</p>
+			</article>
+			<article class="p-20 {x < 1100 ? 'w-full p-5' : 'w-13/12'}" data-aos="fade-up">
+				<h2 class="text-5xl font-bold mb-10">About me</h2>
+				<p class="text-xl leading-relaxed mb-5 w-11/12">
+					I'm from Venezuela and I have 20 years old, actually I study the third year of five of the
+					Systems Engineer major from the Polytechnic University Institute <em>Santiago Mariño</em>.
+					Also, I love teach others about IT topics. My hobbie are the videogames and enjoy the life
+					with my friends and family.
+				</p>
+				<p class="text-xl leading-relaxed w-11/12">
+					I've 1 year working as a FullStack Dev. in my actual work, I use technologies as Svelte,
+					Python, TypeScript and others. If you hire me, you'll get clean code and the best
+					practices for make a clean and readable code. However, something that I like of
+					programming, is resolve problems that are really annoying.
+				</p>
+			</article>
+		</div>
+	</section>
+	<section id="skills" class="skills {x > 1100 && scroll > y - 40 ? 'fade-in' : ''}">
+		<div class="overlay caskaydia p-2 md:p-5 flex flex-col">
+			<h2 class="text-5xl font-bold text-center mb-10">Skills</h2>
+			<input
+				type="search"
+				name="search-skill"
+				id="search-skill"
+				placeholder="Search skills..."
+				bind:value={$searchSkills.search}
+				class="input[type='search'] outline-0 rounded-md text-dark-900 mx-auto mb-5"
+			/>
+			<ul class="icons grids">
+				{#each $searchSkills.filtered as skill}
+					<li class="flex flex-col justify-center items-center">
+						<Icon
+							src={skill.component}
+							style="stroke: #576CBC"
+							class="h-30 w-30"
+							theme="rounded"
+						/>{skill.name}
+					</li>
+				{/each}
+			</ul>
+		</div>
+	</section>
+	<section
+		id="projects"
+		class="pt-5 h-screen text-[#576CBC] transition-bg duration-500 h-auto {!dark
+			? 'bg-[#A5D7E8]'
+			: 'bg-[#19376D]'} {x > 1100 && scroll > 1600 ? 'fade-in' : ''}"
 	>
-		<section
-			id="projects"
-			class="py-5 h-screen text-[#576CBC] transition-bg duration-500 {!dark
-				? 'bg-[#eee] '
-				: 'bg-[#222]'}"
+		<h2 class="text-5xl font-bold text-center p-10 {!dark ? 'text-[#222]' : 'text-[#eee]'}">
+			Projects
+		</h2>
+		<article
+			class="flex justify-between items-center projects crud {x > 1100 && scroll > 1740
+				? 'slide-in-left'
+				: ''}"
 		>
-			<h2 class="text-5xl font-bold text-center p-10">Projects</h2>
-			<Saos once={true} animation={'slide-in-left 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects crud">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://github.com/hbourgeot/crud-go">Golang CLI CRUD</a>
-						</h3>
-						<p class="text-xl">Golang CLI CRUD maked from 0</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={BrandGolang}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>Golang
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={Database}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>PostgreSQL
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-right 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects todotech">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://github.com/hbourgeot/todotech">Todotech Store</a>
-						</h3>
-						<p class="text-xl">Ecommerce with SSR and CRUD operations, has a admin dashboard.</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={BrandGolang}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>Golang
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={Database}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>PostgreSQL
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={BrandHtml5}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>HTML
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={BrandCss3} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />CSS
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={BrandJavascript}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>JavaScript
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-left 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects karma">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://t.me/karmagobot">Go Karma Bot</a>
-						</h3>
-						<p class="text-xl">Telegram Bot for add or substract karma, only works on groups.</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon
-								src={BrandGolang}
-								style="stroke: #576CBC"
-								class="h-30 w-30"
-								theme="rounded"
-							/>Golang
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={Database} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />MySQL
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-right 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects weather text-light-300">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://henrryweather.netlify.app">Henrry Weather</a>
-						</h3>
-						<p class="text-xl">
-							Weather app built in Svelte consuming an Weather API from RapidAPI.
-						</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={BrandSvelte} class="stroke-light-200 h-30 w-30" theme="rounded" />Svelte
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-left 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects solidjs text-light-200">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://solid-todoapp.vercel.app/">Solid ToDo App</a>
-						</h3>
-						<p class="text-xl">
-							ToDo app maded with solidjs, the styles are the same like other todo app.
-						</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={BrandSolidjs} class="stroke-light-200 h-30 w-30" theme="rounded" />SolidJS
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-right 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects fastapi text-dark-900">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://github.com/hbourgeot/soluciones-hsl/">Soluciones HSL</a>
-						</h3>
-						<p class="text-xl">
-							API Project builded with Python, MySQL and Fast API, simulates project management.
-						</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={BrandPython} class="stroke-dark-900e h-30 w-30" theme="rounded" />Python
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={Bolt} class="stroke-dark-900e h-30 w-30" theme="rounded" />FastAPI
-						</li>
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={Database} class="stroke-dark-900e h-30 w-30" theme="rounded" />MySQL
-						</li>
-					</ul>
-				</article>
-			</Saos>
-			<Saos once={true} animation={'slide-in-left 1s cubic-bezier(0.35, 0.5, 0.65, 0.95) both'}>
-				<article class="flex justify-between items-center projects solidjs text-light-200">
-					<div class="content">
-						<h3 class="text-3xl font-bold underline">
-							<a href="https://legendary-yeot-bd3af5.netlify.app/">Vue ToDo App</a>
-						</h3>
-						<p class="text-xl">Vue App using the same style like solidjs todo.</p>
-					</div>
-					<ul class="icons flex">
-						<li class="flex flex-col justify-center items-center">
-							<Icon src={BrandVue} class="stroke-dark-900e h-30 w-30" theme="rounded" />VueJS
-						</li>
-					</ul>
-				</article>
-			</Saos>
-		</section>
-	</Saos>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://github.com/hbourgeot/crud-go">Golang CLI CRUD</a>
+				</h3>
+				<p class="text-xl">Golang CLI CRUD maked from 0</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />Golang
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon
+						src={Database}
+						style="stroke: #576CBC"
+						class="h-30 w-30"
+						theme="rounded"
+					/>PostgreSQL
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects todotech {x > 1100 && scroll > 2020
+				? 'slide-in-right'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://github.com/hbourgeot/todotech">Todotech Store</a>
+				</h3>
+				<p class="text-xl">Ecommerce with SSR and CRUD operations, has a admin dashboard.</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />Golang
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon
+						src={Database}
+						style="stroke: #576CBC"
+						class="h-30 w-30"
+						theme="rounded"
+					/>PostgreSQL
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandHtml5} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />HTML
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandCss3} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />CSS
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon
+						src={BrandJavascript}
+						style="stroke: #576CBC"
+						class="h-30 w-30"
+						theme="rounded"
+					/>JavaScript
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects karma {x > 1100 && scroll > 2270
+				? 'slide-in-left'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://t.me/karmagobot">Go Karma Bot</a>
+				</h3>
+				<p class="text-xl">Telegram Bot for add or substract karma, only works on groups.</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandGolang} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />Golang
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Database} style="stroke: #576CBC" class="h-30 w-30" theme="rounded" />MySQL
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects weather text-light-300 {x > 1100 &&
+			scroll > 2515
+				? 'slide-in-right'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://henrryweather.netlify.app">Henrry Weather</a>
+				</h3>
+				<p class="text-xl">Weather app built in Svelte consuming an Weather API from RapidAPI.</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandSvelte} class="stroke-light-200 h-30 w-30" theme="rounded" />Svelte
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects solidjs text-light-200 {x > 1100 &&
+			scroll > 2760
+				? 'slide-in-left'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://solid-todoapp.vercel.app/">Solid ToDo App</a>
+				</h3>
+				<p class="text-xl">
+					ToDo app maded with solidjs, the styles are the same like other todo app.
+				</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandSolidjs} class="stroke-light-200 h-30 w-30" theme="rounded" />SolidJS
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects fastapi text-dark-900 {x > 1100 &&
+			scroll > 3017
+				? 'slide-in-right'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://github.com/hbourgeot/soluciones-hsl/">Soluciones HSL</a>
+				</h3>
+				<p class="text-xl">
+					API Project builded with Python, MySQL and Fast API, simulates project management.
+				</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandPython} class="stroke-dark-900e h-30 w-30" theme="rounded" />Python
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Bolt} class="stroke-dark-900e h-30 w-30" theme="rounded" />FastAPI
+				</li>
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={Database} class="stroke-dark-900e h-30 w-30" theme="rounded" />MySQL
+				</li>
+			</ul>
+		</article>
+		<article
+			class="flex justify-between items-center projects solidjs text-light-200 {x > 1100 &&
+			scroll > 3263
+				? 'slide-in-left'
+				: ''}"
+		>
+			<div class="content">
+				<h3 class="text-3xl font-bold underline">
+					<a href="https://legendary-yeot-bd3af5.netlify.app/">Vue ToDo App</a>
+				</h3>
+				<p class="text-xl">Vue App using the same style like solidjs todo.</p>
+			</div>
+			<ul class="icons flex">
+				<li class="flex flex-col justify-center items-center">
+					<Icon src={BrandVue} class="stroke-dark-900e h-30 w-30" theme="rounded" />VueJS
+				</li>
+			</ul>
+		</article>
+	</section>
+	<section id="contact" class="h-100 flex flex-col justify-center gap-15">
+		<h2 class="text-5xl font-bold text-center">Contact me</h2>
+		<ul class="icons flex flex-wrap justify-center gap-15 align-center">
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandGmail} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="mailto:henrrybrgt@gmail.com">Mail</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandInstagram} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://instagram.com/estudiandev">Instagram</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandTwitter} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://twitter.com/estudiandev">Twitter</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandTiktok} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://tiktok.com/@estudiandev">TikTok</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandLinkedin} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://linkedin.com/in/hbourgeotjr">LinkedIn</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={BrandGithub} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://github.com/hbourgeot">GitHub</a>
+			</li>
+			<li class="flex justify-center items-center flex-col">
+				<Icon src={Code} class="stroke-[#576CBC] h-20 w-20" />
+				<a href="https://estudiandev.site">Blog</a>
+			</li>
+		</ul>
+	</section>
 </div>
 
 <style lang="scss">
@@ -479,7 +500,7 @@
 		src: url('$lib/fonts/Caskaydia Cove Nerd Font Complete Mono Regular.otf');
 		font-weight: 700;
 	}
-	@-webkit-keyframes -global-fade-in {
+	@-webkit-keyframes fade-in {
 		0% {
 			opacity: 0;
 		}
@@ -487,7 +508,7 @@
 			opacity: 1;
 		}
 	}
-	@keyframes -global-fade-in {
+	@keyframes fade-in {
 		0% {
 			opacity: 0;
 		}
@@ -496,54 +517,77 @@
 		}
 	}
 
-	@-webkit-keyframes -global-slide-in-right {
+	@-webkit-keyframes slide-in-right {
 		0% {
 			-webkit-transform: translateX(1000px);
+			overflow: hidden;
 			transform: translateX(1000px);
 			opacity: 0;
 		}
 		100% {
 			-webkit-transform: translateX(0);
+			overflow: hidden;
 			transform: translateX(0);
 			opacity: 1;
 		}
 	}
-	@keyframes -global-slide-in-right {
+	@keyframes slide-in-right {
 		0% {
 			-webkit-transform: translateX(1000px);
+			overflow: hidden;
 			transform: translateX(1000px);
 			opacity: 0;
 		}
 		100% {
 			-webkit-transform: translateX(0);
+			overflow: hidden;
 			transform: translateX(0);
 			opacity: 1;
 		}
 	}
 
-	@-webkit-keyframes -global-slide-in-left {
+	@-webkit-keyframes slide-in-left {
 		0% {
 			-webkit-transform: translateX(-1000px);
+			overflow: hidden;
 			transform: translateX(-1000px);
 			opacity: 0;
 		}
 		100% {
 			-webkit-transform: translateX(0);
+			overflow: hidden;
 			transform: translateX(0);
 			opacity: 1;
 		}
 	}
-	@keyframes -global-slide-in-left {
+	@keyframes slide-in-left {
 		0% {
 			-webkit-transform: translateX(-1000px);
+			overflow: hidden;
 			transform: translateX(-1000px);
 			opacity: 0;
 		}
 		100% {
 			-webkit-transform: translateX(0);
+			overflow: hidden;
 			transform: translateX(0);
 			opacity: 1;
 		}
+	}
+
+	.fade-in {
+		-webkit-animation: fade-in 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.3s both;
+		animation: fade-in 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.3s both;
+	}
+
+	.slide-in-right {
+		-webkit-animation: slide-in-right 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.5s both;
+		animation: slide-in-right 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.5s both;
+	}
+
+	.slide-in-left {
+		-webkit-animation: slide-in-left 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.5s both;
+		animation: slide-in-left 0.5s cubic-bezier(0.35, 0.5, 0.65, 0.95) 0.5s both;
 	}
 
 	.caskaydia {
@@ -590,42 +634,35 @@
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		row-gap: 10px;
 	}
-
 	.projects {
 		padding: 40px;
 		background-size: cover;
 		background-position: center 600px;
+		height: 250px;
 		transition: height 300ms;
-		height: 25%;
-		@media (min-width: 1024px) {
+		@media (min-width: 1100px) {
 			&:hover {
-				height: 45%;
+				height: 500px;
 			}
 		}
 	}
-
 	.crud {
 		background-image: url('$lib/assets/crud.jpg');
 		background-position: bottom center;
 	}
-
 	.todotech {
 		background-image: url('$lib/assets/todotech.jpg');
 	}
-
 	.karma {
 		background-image: url('$lib/assets/karmagobot.jpg');
 	}
-
 	.weather {
 		background-image: url('$lib/assets/weather.png');
 	}
-
 	.solidjs {
 		background-image: url('$lib/assets/solidtodo.png');
 		background-position: center top;
 	}
-
 	.fastapi {
 		background-image: url('$lib/assets/fastapi.png');
 	}
